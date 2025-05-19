@@ -17,6 +17,6 @@
 - SCSS
 - JavaScript
 
-<a name="vazifa"></a>
+<a name="vazifa" href='(https://github.com/azizbekkhabibullaev/book-shop-js/blob/master/books-shop-instruction.md)'></a>
 
-<a name="joylash"></a>
+<a name="joylash" href='https://tape-book-shop.netlify.app/'></a>
