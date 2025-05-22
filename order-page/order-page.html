@@ -1,12 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Order page</title>
-		<link rel="stylesheet" href="./order-page.css" />
+		<title>Buyurtma berish</title>
+		<link rel="stylesheet" href="order-page.css" />
 	</head>
 	<body>
-		<script src="./order-page.js"></script>
+		<div class="order-container">
+			<h2>Buyurtma berish</h2>
+			<form id="orderForm" novalidate>
+				<div class="form-group">
+					<label for="name">Ism*</label>
+					<input type="text" id="name" name="name" required />
+					<span class="error-message"></span>
+				</div>
+				<div class="form-group">
+					<label for="surname">Familiya*</label>
+					<input type="text" id="surname" name="surname" required />
+					<span class="error-message"></span>
+				</div>
+				<div class="form-group">
+					<label for="date">Yetkazib berish sanasi*</label>
+					<input type="date" id="date" name="date" required />
+					<span class="error-message"></span>
+				</div>
+				<div class="form-group">
+					<label for="street">Ko'cha*</label>
+					<input type="text" id="street" name="street" required />
+					<span class="error-message"></span>
+				</div>
+				<div class="form-group">
+					<label for="house">Uy raqami*</label>
+					<input type="number" id="house" name="house" required />
+					<span class="error-message"></span>
+				</div>
+				<div class="form-group">
+					<label for="flat">Xonadon raqami*</label>
+					<input type="text" id="flat" name="flat" required />
+					<span class="error-message"></span>
+				</div>
+				<div class="form-group">
+					<label>To'lov turi*</label>
+					<div class="radio-group">
+						<label
+							><input type="radio" name="payment" value="Naqd" required />
+							Naqd</label
+						>
+						<label
+							><input type="radio" name="payment" value="Karta" required />
+							Karta</label
+						>
+					</div>
+					<span class="error-message"></span>
+				</div>
+				<div class="form-group">
+					<label>Sovg'alardan 2 tasini tanlang (ixtiyoriy):</label>
+					<div class="checkbox-group">
+						<label
+							><input type="checkbox" name="gifts" value="Sovg'a qadoqlash" />
+							Sovg'a qadoqlash</label
+						>
+						<label
+							><input
+								type="checkbox"
+								name="gifts"
+								value="Tabriknoma qo'shish"
+							/>
+							Tabriknoma qo'shish</label
+						>
+						<label
+							><input type="checkbox" name="gifts" value="2% chegirma" /> 2%
+							chegirma (keyingi safar)</label
+						>
+						<label
+							><input
+								type="checkbox"
+								name="gifts"
+								value="Brendli ruchka/qalam"
+							/>
+							Brendli ruchka/qalam</label
+						>
+					</div>
+				</div>
+				<button type="submit" id="completeBtn" disabled>Yakunlash</button>
+			</form>
+		</div>
+
+		<!-- Modal oyna -->
+		<div id="orderModal" class="modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<h3>Buyurtma muvaffaqiyatli yaratildi!</h3>
+				<div id="orderSummary"></div>
+			</div>
+		</div>
+
+		<script src="order-page.js"></script>
 	</body>
 </html>
