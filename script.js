@@ -78,15 +78,29 @@ document.addEventListener('DOMContentLoaded', () => {
 		showMoreBtn.addEventListener('click', () => {
 			modal.innerHTML = `
 				<div class="modal__content">
-					<h2>${book.title}</h2>
-					<p>${book.description}</p>
-					<button class="modal__close">Close</button>
+					<h2 class="modal__title">${book.title}</h2>
+					<p class="modal__description">${book.description}</p>
+					<button class="modal__close" aria-label="Close modal">×</button>
 				</div>
 			`
 			modal.classList.add('open')
 
-			modal.querySelector('.modal__close').addEventListener('click', () => {
-				modal.classList.remove('open')
+			// Close button click handler
+			const closeBtn = modal.querySelector('.modal__close')
+			closeBtn.addEventListener('click', closeModal)
+
+			// Click outside modal handler
+			modal.addEventListener('click', e => {
+				if (e.target === modal) {
+					closeModal()
+				}
+			})
+
+			// Escape key handler
+			document.addEventListener('keydown', e => {
+				if (e.key === 'Escape' && modal.classList.contains('open')) {
+					closeModal()
+				}
 			})
 		})
 
@@ -94,6 +108,17 @@ document.addEventListener('DOMContentLoaded', () => {
 		bookEl.addEventListener('dragstart', e => {
 			e.dataTransfer.setData('text/plain', JSON.stringify(book))
 		})
+	}
+
+	function closeModal() {
+		modal.classList.remove('open')
+		// Remove event listeners
+		const closeBtn = modal.querySelector('.modal__close')
+		if (closeBtn) {
+			closeBtn.removeEventListener('click', closeModal)
+		}
+		modal.removeEventListener('click', closeModal)
+		document.removeEventListener('keydown', closeModal)
 	}
 
 	function addToBag(book) {
