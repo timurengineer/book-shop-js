@@ -75,6 +75,308 @@ body {
 	color: #ccc;
 }
 
+/* Main */
+.main {
+	width: 100%;
+}
+.main__content {
+	padding: min(70px, 5vw);
+	display: grid;
+	grid-template-columns: 1fr auto;
+	overflow: auto;
+}
+
+/* Catalog */
+.catalog {
+	padding: min(50px, 5vw);
+	min-height: 100vh;
+}
+
+.catalog__caption {
+	font-weight: 600;
+	font-size: 50px;
+	line-height: 130%;
+	color: #000000;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.catalog__list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 600px);
+	gap: 20px;
+}
+
+.book {
+	width: 600px;
+	height: 360px;
+}
+
+.book__content {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding: 40px;
+	display: grid;
+	-moz-column-gap: 40px;
+	column-gap: 40px;
+	align-items: start;
+	grid-template-columns: 200px auto;
+	grid-template-rows: fit-content(28px) 1fr repeat(3, 45px);
+	grid-template-areas: 'book-cover title' 'book-cover author' 'book-cover rating' 'book-cover price' 'book-cover buttons';
+}
+
+.book__img-wrap {
+	grid-area: book-cover;
+	position: relative;
+}
+
+.book__img-wrap:hover::after {
+	content: 'Drag to bag';
+	word-spacing: 100vw;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	font-size: 36px;
+	font-weight: 700;
+	text-transform: uppercase;
+	background-color: rgba(255, 184, 0, 0.7);
+}
+
+.book__img {
+	-o-object-fit: contain;
+	object-fit: contain;
+	-o-object-position: top left;
+	object-position: top left;
+	width: 200px;
+	height: 280px;
+}
+
+.book__title {
+	grid-area: title;
+	font-weight: 600;
+	line-height: 130%;
+	color: #000000;
+	font-size: 22px;
+}
+
+.book__author {
+	grid-area: author;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 130%;
+	color: #ffb800;
+	margin-top: 20px;
+}
+
+.book__rating {
+	grid-area: rating;
+	align-self: start;
+	display: flex;
+}
+
+.book__rating:hover .book__rating-star {
+	background-color: #ffb800;
+}
+
+.book__rating:hover .book__rating-star:hover {
+	transform-origin: center;
+	scale: 1.2;
+	transition: all 0.2s ease-in;
+}
+
+.book__rating:hover .book__rating-star:hover ~ div:not(:active) {
+	background-color: lightgray;
+}
+
+.book__rating:hover .book__rating-star:active:hover {
+	filter: brightness(110%);
+}
+
+.book__rating-star {
+	-webkit-mask-image: url('./assets/images/Star.svg');
+	mask-image: url('./assets/images/Star.svg');
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	background-color: #ffb800;
+	padding: 0 8px;
+	width: 38px;
+	height: 22px;
+	cursor: pointer;
+	transition: all 0.2s ease-out;
+}
+
+.book__rating-star_not-active {
+	background-color: lightgray;
+}
+
+.book__price {
+	grid-area: price;
+	align-self: start;
+	display: flex;
+	color: #000000;
+	line-height: 1;
+	align-items: end;
+}
+
+.price__caption {
+	font-weight: 400;
+	font-size: 18px;
+	margin-right: 10px;
+}
+
+.price__value {
+	position: relative;
+	top: 2px;
+	font-weight: 600;
+	font-size: 28px;
+}
+
+.price__value::before {
+	content: '$';
+}
+
+.book__btns {
+	grid-area: buttons;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.button:not(:disabled):not(:active):hover {
+	scale: 1.05;
+	transform-origin: center;
+	transition: all 0.2s ease-in;
+}
+
+.book__add-btn {
+	padding: 11px 36px;
+	background: #ffb800;
+	border-radius: 22.5px;
+	font-size: 18px;
+	line-height: 130%;
+	text-align: center;
+	color: #ffffff;
+	transition: all 0.2s ease-out;
+	cursor: pointer;
+}
+
+.book__show-btn {
+	color: #000000;
+	background-color: #ffffff;
+	font-size: 18px;
+	line-height: 1;
+	padding: 5px;
+	transition: all 0.2s ease-out;
+}
+
+.book__show-btn:hover {
+	scale: 1.05;
+	transform-origin: center;
+	transition: all 0.2s ease-in;
+}
+
+.book__show-btn:active:hover {
+	scale: 1;
+}
+
+/* Bag */
+.right-bag {
+	width: 380px;
+	height: 100%;
+}
+.bag {
+	background: #f8f8f8;
+	border-radius: 10px;
+	transition: all 0.2s ease-out;
+	width: 380px;
+	min-height: 100vh;
+	height: -webkit-fit-content;
+	height: -moz-fit-content;
+	height: fit-content;
+}
+
+.bag_fixed {
+	position: fixed;
+	top: 0;
+	right: min(70px, 5vw);
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 100vh;
+	border-radius: 0;
+}
+
+.bag__content {
+	padding: min(50px, 5vw);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.bag__caption {
+	font-weight: 600;
+	font-size: 50px;
+	line-height: 130%;
+	color: #000000;
+	text-align: center;
+	margin-bottom: 30px;
+}
+.bag__total {
+	margin: 20px 0;
+	scale: 1.2;
+}
+.price {
+	display: flex;
+	color: #000000;
+	line-height: 1;
+	align-items: end;
+}
+.price__caption {
+	font-weight: 400;
+	font-size: 18px;
+	margin-right: 10px;
+}
+.price__value {
+	position: relative;
+	top: 2px;
+	font-weight: 600;
+	font-size: 28px;
+}
+.price__value::before {
+	content: '$';
+}
+.button {
+	padding: 11px 36px;
+	background: #ffb800;
+	border-radius: 22.5px;
+	font-size: 18px;
+	line-height: 130%;
+	text-align: center;
+	color: #ffffff;
+	transition: all 0.2s ease-out;
+}
+.button:disabled {
+	background: lightgray;
+	cursor: default;
+}
+.button__confirm-btn {
+	padding: 11px 36px;
+	background: #ffb800;
+	border-radius: 22.5px;
+	font-size: 18px;
+	line-height: 130%;
+	text-align: center;
+	color: #ffffff;
+	transition: all 0.2s ease-out;
+	cursor: pointer;
+}
+
 /* Footer */
 .footer {
 	position: relative;
@@ -95,4 +397,194 @@ body {
 	font-weight: 700;
 	text-align: center;
 	color: #ffb800;
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+}
+.modal.open {
+	display: flex;
+}
+.modal__content {
+	background: white;
+	padding: 20px;
+	border-radius: 8px;
+	max-width: 400px;
+	text-align: center;
+}
+.modal__close {
+	margin-top: 10px;
+}
+.star {
+	cursor: pointer;
+	font-size: 1.2em;
+	color: #ccc;
+}
+.star.active {
+	color: gold;
+}
+
+/* Tugmalar */
+.book__add-btn,
+.book__show-more {
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	font-size: 14px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	border-radius: 5px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	display: inline-block;
+	margin-top: 10px;
+}
+
+.book__add-btn:hover,
+.book__show-more:hover {
+	background-color: #45a049;
+}
+
+/* Modal */
+.modal {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1000;
+	align-items: center;
+	justify-content: center;
+}
+
+.modal__content {
+	background-color: white;
+	padding: 20px;
+	border-radius: 8px;
+	width: 400px;
+	max-width: 90%;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal__title {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.modal__author {
+	font-size: 18px;
+	color: #555;
+	margin-bottom: 15px;
+}
+
+.modal__description {
+	font-size: 16px;
+	color: #777;
+	margin-bottom: 20px;
+	line-height: 1.6;
+}
+
+.modal__close {
+	background-color: #f44336;
+	color: white;
+	border: none;
+	padding: 8px 16px;
+	font-size: 14px;
+	cursor: pointer;
+	border-radius: 5px;
+	transition: background-color 0.3s ease;
+}
+
+.modal__close:hover {
+	background-color: #e53935;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/* Bag item styles */
+.bag__item {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 10px;
+	background-color: #fafafa;
+	border-radius: 8px;
+}
+
+.bag__item img {
+	width: 50px;
+	height: 75px;
+	object-fit: cover;
+	border-radius: 4px;
+	margin-right: 15px;
+}
+
+.bag__item div {
+	flex: 1;
+	margin-right: 15px;
+}
+
+.bag__item button {
+	background-color: #f44336;
+	color: white;
+	border: none;
+	padding: 6px 12px;
+	font-size: 12px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.bag__item button:hover {
+	background-color: #e53935;
+}
+
+/* Total price styles */
+.total__container {
+	display: flex;
+	justify-content: space-between;
+	font-size: 18px;
+	margin-top: 20px;
+	font-weight: bold;
+}
+
+.button__confirm-btn {
+	background-color: #2196f3;
+	color: white;
+	padding: 10px 20px;
+	font-size: 16px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button__confirm-btn:disabled {
+	background-color: #ccc;
+}
+
+.button__confirm-btn:hover:not(:disabled) {
+	background-color: #1e88e5;
 }
