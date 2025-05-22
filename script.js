@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const savedRatings = loadRatingsFromStorage()
 		catalogList.innerHTML = ''
 		bookArray.forEach(book => {
-			// Agar reyting localStorageda bo‘lsa, uni yuklash
+			// Agar reyting localStorageda bo'lsa, uni yuklash
 			if (savedRatings[book.title]) {
 				book.rating = savedRatings[book.title]
 			}
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		updateTotal()
 	}
 
-	// Cartga kitob qo‘shish uchun localStorageda ham ishlaydigan funksiya
+	// Cartga kitob qo'shish uchun localStorageda ham ishlaydigan funksiya
 	function addToBag(book, fromStorage = false) {
 		const existingItem = bagList.querySelector(`[data-title=\"${book.title}\"]`)
 		if (existingItem) {
@@ -362,5 +362,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		} catch (error) {
 			console.error("Drag ma'lumotini o'qishda xatolik:", error)
 		}
+	})
+
+	// Confirm Order tugmasi bosilganda order-page.html ga o'tish
+	const confirmBtn = document.querySelector('.button__confirm-btn')
+	confirmBtn.addEventListener('click', () => {
+		window.location.href = 'order-page/order-page.html'
 	})
 })
